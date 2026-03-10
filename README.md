@@ -95,3 +95,99 @@ def random_seating_arrangement():
     print("Ученик 2:           ", result[:, 2])
 
 random_seating_arrangement()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import  numpy as np
+class Weather:
+    def __init__(self, date, temp_day, temp_night, wind_speed, humidity, precipitation, uv):
+
+        """
+        date - дата (строка "20.03")
+        temp_day - температура днем
+        temp_night - температура ночью
+        wind_speed - скорость ветра м/c
+        humidity - влажность (%)
+        precipitation - вероятность осадков (%)
+        uv - индекс ультрафиолета
+        """
+
+        self.date = date
+        self.temp_day = temp_day
+        self.temp_night = temp_night
+        self.wind_speed = wind_speed
+        self.humidity = humidity
+        self.precipitation = precipitation
+        self.uv = uv
+
+days = [
+    Weather("11.03", 6, -5, 4, 78, 20, 3),
+    Weather("12.03", 6, -2, 3, 76, 34, 2),
+    Weather("13.03", 8, -1, 3, 78, 33, 1),
+    Weather("14.03", 9, 1, 3, 74, 25, 2),
+    Weather("15.03", 9, -1, 1, 72, 68, 1),
+    Weather("16.03", 8, -1, 1, 71, 37, 2),
+    Weather("17.03", 8, 0, 1, 69, 56, 2),
+    Weather("18.03", 8, 0, 2, 70, 54, 2),
+    Weather("19.03", 8, -1, 1, 70, 66, 2),
+    Weather("20.03", 4, -1, 2, 74, 81, 0)
+]
+
+# for day in days:
+#     print(f"{day.date}: днём {day.temp_day}°C, {day.temp_night}°C,  ночью, скорость ветра {day.wind_speed}м/с, влажность {day.precipitation}%, вероятность осадков {day.humidity}%, индекс ультрафиолета {day.uv}")
+
+print("Дата    День   Ночь   Ветер  Влажн  Осадки  УльтраФ")
+print("-" * 50)
+for day in days:
+    print(f"{day.date}  {day.temp_day:3}°C  {day.temp_night:3}°C  {day.wind_speed:2}м/с  {day.humidity:3}%   {day.precipitation:3}%    {day.uv:2}")
+
+
+temp_days = np.array([day.temp_day for day in days])
+
+print("\nСтатистика по дневной температуре:")
+print(f"Средняя: {temp_days.mean()}°C")
+print(f"Максимальная: {temp_days.max()}°C")
+print(f"Минимальная: {temp_days.min()}°C")
+
+
+temp_nights = np.array([day.temp_night for day in days])
+
+print("\nСтатистика по ночной температуре:")
+print(f"Средняя: {temp_nights.mean()}°C")
+print(f"Максимальная: {temp_nights.max()}°C")
+print(f"Минимальная: {temp_nights.min()}°C")
+
+
+print("\nТемпература за 11-14 марта")
+first_3 = days[:3]
+temp_day_3 = np.array([day.temp_day for day in first_3])
+temp_night_3 = np.array([day.temp_night for day in first_3])
+
+print(f"Средняя дневная: {temp_day_3.mean():.1f}°C")
+print(f"Средняя ночная: {temp_night_3.mean():.1f}°C")
+print(f"Средняя за сутки: {(temp_day_3.mean() + temp_night_3.mean()) / 2:.1f}°C")
+
+
+print("\nТемпература за 11-17 марта")
+
+week = days[:7]
+temp_day_w = np.array([day.temp_day for day in week])
+temp_night_w = np.array([day.temp_night for day in week])
+
+print(f"Средняя дневная: {temp_day_w.mean():.1f}°C")
+print(f"Средняя ночная: {temp_night_w.mean():.1f}°C")
+print(f"Средняя за сутки: {(temp_day_w.mean() + temp_night_w.mean()) / 2:.1f}°C")
