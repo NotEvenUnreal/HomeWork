@@ -172,7 +172,7 @@ print(f"Максимальная: {temp_nights.max()}°C")
 print(f"Минимальная: {temp_nights.min()}°C")
 
 
-print("\nТемпература за 11-14 марта")
+print("\nТемпература за 11-14 марта:")
 first_3 = days[:3]
 temp_day_3 = np.array([day.temp_day for day in first_3])
 temp_night_3 = np.array([day.temp_night for day in first_3])
@@ -182,7 +182,7 @@ print(f"Средняя ночная: {temp_night_3.mean():.1f}°C")
 print(f"Средняя за сутки: {(temp_day_3.mean() + temp_night_3.mean()) / 2:.1f}°C")
 
 
-print("\nТемпература за 11-17 марта")
+print("\nТемпература за 11-17 марта:")
 
 week = days[:7]
 temp_day_w = np.array([day.temp_day for day in week])
