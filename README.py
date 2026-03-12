@@ -264,3 +264,4 @@ print(matrix2)
 
 
 print([[j if j % 2 == 1 else 0 for j in range(1,4)] for i in range(1, 4)])
+
