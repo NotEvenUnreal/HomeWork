@@ -191,3 +191,76 @@ temp_night_w = np.array([day.temp_night for day in week])
 print(f"Средняя дневная: {temp_day_w.mean():.1f}°C")
 print(f"Средняя ночная: {temp_night_w.mean():.1f}°C")
 print(f"Средняя за сутки: {(temp_day_w.mean() + temp_night_w.mean()) / 2:.1f}°C")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+print([i%4 for i in range(12)])
+
+
+print([i * 5 for i in "Hello"])
+
+
+
+print([ord(i) for i in "Hello"])
+
+
+import random
+
+a = [random.randint(-10, 10) for i in range(10)]
+print(a)
+
+b = [abs(i) for i in a]
+print(b)
+
+col = 5
+s = 4
+a = [[0]*s for i in range(col)]
+a[3][1] = 100
+print(a)
+for i in a:
+    print(i)
+
+
+a = [(i, j) for i in "abc" for j in [1, 2, 3]]
+print(a)
+
+
+a = [(i * j) for i in "abc" for j in [1, 2, 3]]
+print(a)
+
+
+a = [(i * j) for i in [1, 2, 3, 4, 5] for j in [1, 2, 3] if i*j>=10]
+print(a)
+
+
+matrix1 = []
+for i in range(1, 4):
+    row = []
+    for j in range(1, 4):
+        if j%2 == 1:
+            row.append(j)
+        else:
+            row.append(0)
+    matrix1.append(row)
+print(matrix1)
+
+
+matrix2 = [[j if j % 2 == 1 else 0 for j in range(1,4)] for i in range(1, 4)]
+print(matrix2)
+
+
+print([[j if j % 2 == 1 else 0 for j in range(1,4)] for i in range(1, 4)])
