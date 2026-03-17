@@ -410,3 +410,54 @@ print([[j if j % 2 == 1 else 0 for j in range(1,4)] for i in range(1, 4)])
     
     ЭтотОбъект.РезультатСумма = Сумма;
 КонецПроцедуры
+
+
+
+
+
+
+
+n = 1
+result_revers = ""
+
+while n > 0:
+    result_revers += str(n % 2)
+    n = n // 2
+
+result = result_revers[::-1]
+print(result)
+
+
+
+n = 15
+result_revers = []
+while n > 0:
+    result_revers.append(n % 2)
+    n = n // 2
+
+result = result_revers[::-1]
+print(result)
+
+
+
+result = [1, 0, 1, 0]
+result_revers = result[::-1]
+n = 0
+exponent = 0
+for i in result_revers:
+    if i == 1:
+        n += 2 ** exponent
+    exponent += 1
+print(n)
+
+
+
+result = "1010"
+result_revers = result[::-1]
+n = 0
+exponent = 0
+for i in result_revers:
+    if i == "1":
+        n += 2 ** exponent
+    exponent += 1
+print(n)
