@@ -653,3 +653,155 @@ print(df2.head(3))
     Сообщить("3: " + Строка3);
     
 КонецПроцедуры
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import pandas as pd
+import numpy as np
+
+#1 Создание одномероного массива
+print("Создание одномероного массива")
+s = pd.Series([10, 20, 30, 40, 50])
+print(s)
+
+
+# Создание одномероного массива с собственными индексами
+print("Создание одномероного массива с собственными индексами")
+s = pd.Series([10, 20, 30], index=['a', 'b', 'c'])
+print(s)
+
+
+
+# Создание Series из массива NumPy:
+data = np.array([10, 20, 30, 40, 50])
+series = pd.Series(data)
+print(series)
+
+
+
+
+#2
+print("Просмотр начала/конца")
+print(s.head(2))  # первые 2 элемента
+print(s.tail(2))  # последние 2 элемента
+
+
+#3 iloc - выбор по позиции
+s_ind = pd.Series([10, 25, 15, 30, 20], index=['a', 'b', 'c', 'd', 'e'])
+print("Исходный Series с индексами a,b,c,d,e:")
+print(s_ind)
+print(f"\niloc[2] (элемент на позиции 2): {s_ind.iloc[2]}")
+print("iloc[[0, 2]] (элементы на позициях 0 и 2):")
+print(s_ind.iloc[[0, 2]])
+
+
+
+
+#4 isin - проверка вхождения
+print("\nisin([15, 30]) - проверка вхождения в список:")
+print(s_ind.isin([15, 30]))
+print("Выбор элементов, которые есть в списке [15, 30]:")
+print(s_ind[s_ind.isin([15, 30])])
+
+
+
+
+#5 loc - выбор по метке
+print(f"\nloc['c'] (элемент с меткой 'c'): {s_ind.loc['c']}")
+print("loc['b':'d'] (элементы с метками от 'b' до 'd'):")
+print(s_ind.loc['b':'d'])
+
+
+
+
+#6 MultiIndex.from_tuples
+print("Создание мультииндекса из кортежей:")
+tuples = [('a', 1), ('a', 2), ('b', 1), ('b', 2)]
+index = pd.MultiIndex.from_tuples(tuples)
+s_multi = pd.Series([10, 20, 30, 40], index=index)
+print(s_multi)
+
+
+
+
+#7 MultiIndex.from_product
+print("\nСоздание мультииндекса из всех комбинаций:")
+index = pd.MultiIndex.from_product([['a','b'], [1,2]])
+s_multi2 = pd.Series([100, 200, 300, 400], index=index)
+print(s_multi2)
+
+
+
+
+#8 describe - описательная статистика
+print("\ndescribe() - описательная статистика:")
+s_stat = pd.Series([15, 25, 10, 30, 20, 25, 15])
+print(s_stat.describe())
+print("describe(percentiles=[0.1, 0.9]) - с дополнительными процентилями:")
+print(s_stat.describe(percentiles=[0.1, 0.9]))
+
+
+#9 count - количество не-NaN элементов
+print(f"\ncount() - количество не-NaN элементов: {s_stat.count()}")
+
+
+#10 argsort - индексы для сортировки
+print(f"\nargsort() - индексы, которые отсортируют значения:")
+print(f"Исходные значения: {s_stat.values}")
+print(f"argsort(): {s_stat.argsort().values}")
+
+
+# argmin - позиция минимума
+print(f"\nargmin() - позиция минимума: {s_stat.argmin()}, значение: {s_stat.min()}")
+
+
+# argmax - позиция максимума
+print(f"argmax() - позиция максимума: {s_stat.argmax()}, значение: {s_stat.max()}")
+
+
+
+
+
+#11 astype - преобразование типа данных
+print("\nastype - преобразование типа данных:")
+s_astype = pd.Series([1, 2, 3, 4, 5])
+print("Исходный (int):")
+print(s_astype)
+print("\nastype(float):")
+print(s_astype.astype(float))
+print("\nastype(str):")
+print(s_astype.astype(str))
+print("\nastype('category'):")
+print(s_astype.astype('category'))
+
+
+#12 value_counts - подсчет уникальных значений
+print("\nvalue_counts() - подсчет уникальных значений:")
+s_counts = pd.Series(['a', 'b', 'a', 'c', 'b', 'b'])
+print(s_counts.value_counts())
+
