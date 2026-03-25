@@ -805,3 +805,97 @@ print("\nvalue_counts() - подсчет уникальных значений:"
 s_counts = pd.Series(['a', 'b', 'a', 'c', 'b', 'b'])
 print(s_counts.value_counts())
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import pandas as pd
+
+url = "https://docs.google.com/spreadsheets/d/1WWCqNemEJTfqPaMPR2rF3qoLzdilovemsrAuvLJNv-A/export?format=csv" #ссылка Гугл таблицу
+df = pd.read_csv(url) #создание переменной для ссылки
+print(df) #вывод всей таблицы
+subjects =['subject1', 'subject2', 'subject3', 'subject4', 'subject5'] #создаём переменную для удобного вывода средних баллов по  5 предметам
+print(df[['subject1', 'subject2', 'subject3', 'subject4', 'subject5']].mean()) #не удобно
+print(df[subjects].mean()) #удобно
+print(df[subjects].mean().mean()) #средний балл по всем предметам
+no_triples = df[(df['subject1'] >= 4) &     #фильтр по предметам > 4
+                (df['subject2'] >= 4) &
+                (df['subject3'] >= 4) &
+                (df['subject4'] >= 4) &
+                (df['subject5'] >= 4)]
+
+print(no_triples[['student','subject1', 'subject2', 'subject3', 'subject4', 'subject5']]) #ввывод имена студентов без троек и его оценки
+without_stipend =  df[df['stipend'] == 0] #фильтр стипендия = 0
+print(without_stipend[['student']]) #вывод студентов без стипендии
+nonresidents = df[df['city'] != 'Шумерля'] #иногородние
+for idx, row in nonresidents.iterrows():
+    fives = [] #лист для пятёрок
+    if row['subject1'] == 5: fives.append('subject1')
+    if row['subject2'] == 5: fives.append('subject2')
+    if row['subject3'] == 5: fives.append('subject3')
+    if row['subject4'] == 5: fives.append('subject4')
+    if row['subject5'] == 5: fives.append('subject5')
+
+    if fives:  #только если есть хотя бы одна пятёрка
+        print(f"{row['student']}, {row['city']}: {', '.join(fives)}") #вывод иногороних хотя бы с 1 пятёркой
+
+local_resident = df[df['city'] != 'Шумерля'] #шумерлинские
+df['avg'] = df[subjects].mean(axis=1) #средний балл студента
+print(df[(df['city'] == 'Шумерля') & (df['avg'] >= 4.5)]) #вывод шумерлинских с  avg >= 4.5
+
+
+
+
+#группируем по возрасту и считаем средний балл
+age_avg = df.groupby('age')['avg'].mean().round(2)
+for age, avg in age_avg.items():
+    print(f"Возраст {age} лет: средний балл {avg}") #вывод корреляции возраста и успеваемости
+
+for subject in subjects:
+    best = df[df[subject] == df[subject].max()]['student'].tolist() #создание переменной, где сравниваем средний балл каждого студента с максимумом и превращаем в список
+    print(f"{subject}: {', '.join(best)} ({df[subject].max()})") #вывод топов
+
+
+city_stats = df.groupby('city')['avg'].agg(['mean', 'count']).round(2).sort_values('mean', ascending=False)
+print("Топ-3 города по успеваемости:")
+for i, (city, row) in enumerate(city_stats.head(3).iterrows(), 1):
+    print(f"{i}. {city}: {row['mean']} (студентов: {row['count']})") #вывод топ-3 города
+
+# groupby()	Группирует данные по значениям
+# agg()	Применяет функции к группам (mean, sum, count)
+# round(2)	Округляет числа до 2ух знаков после точки
+# sort_values(ascending=False)	Сортирует по колонке от большего к меньшему
+# head()	Берёт первые N строк
+# iterrows()	Проходит по строкам по одной
+# enumerate()	Нумерует итерации
+
+print(df.columns.tolist())
