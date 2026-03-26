@@ -992,3 +992,7 @@ for character in text: #цикл по каждому символу текста
     full_code += binary
     print(f"{character} -> {binary}")
 print(full_code)
+
+
+
+https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_pPA7cWecnsx8iWl3fOWGfLH_sJfVFlkS9auYYKx9Ue57q052TH6rPnCKTbnS1vGc6lt7BnjrePGV/pub?output=xlsx
