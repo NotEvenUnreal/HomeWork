@@ -899,3 +899,96 @@ for i, (city, row) in enumerate(city_stats.head(3).iterrows(), 1):
 # enumerate()	Нумерует итерации
 
 print(df.columns.tolist())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+rus_lower = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя" #33
+rus_upper = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ" #33
+eng_lower = "abcdefghijklmnopqrstuvwxyz" #26
+eng_upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" #26
+digits = "0123456789"   #10
+symbols = " .,!?-:;'()[]{}@#$%^&*+=" #24
+alfabet = rus_lower + rus_upper + eng_lower + eng_upper + digits + symbols #152
+full_code = ""
+
+text = input("Что закодировать:")
+
+for character in text: #цикл по каждому символу текста
+    num = alfabet.find(character) #находим номер буквы в алфавите
+    if num == -1:
+        print(f"Символ '{character}' не найден в алфавите")
+        continue
+    binary = "" #стирается после, того как зашифруется 1 символ
+    for i in range(7, -1, -1):  # i = 7,6,5,4,3,2,1,0 #идём от старшего к младшему разряду
+        if num >= 2**i: #помещается ли число в этот бит?
+            binary += "1"
+            num -= 2**i #убираем использованную степень
+        else:
+            binary += "0"
+    full_code += binary
+    print(f"{character} -> {binary}")
+print(full_code)
