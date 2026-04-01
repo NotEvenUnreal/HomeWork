@@ -996,3 +996,37 @@ print(full_code)
 
 
 https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_pPA7cWecnsx8iWl3fOWGfLH_sJfVFlkS9auYYKx9Ue57q052TH6rPnCKTbnS1vGc6lt7BnjrePGV/pub?output=xlsx
+
+
+
+
+
+#Функция перевода числа в троичную систему
+def troichnoe(n):
+    res = "" #строка для результата
+    while n > 0:
+        res = str(n % 3) + res #остаток (0,1,2) → строка → добавляем В НАЧАЛО
+        n //= 3 #делим на 3 (целочисленно)
+    return res or "0" #если n было 0, вернуть "0", иначе вернуть res
+
+
+#Функция перевода троичной строки в десятичное число
+def to_dec(s):
+    return int(s, 3) # int("12", 3) = 5
+
+
+#Основной алгоритм по задаче
+def R(N):
+    tr = troichnoe(N) #шаг 1: N → троичная строка
+
+    if N % 3 != 0: #шаг 2: если N НЕ кратно 3
+        ost = N % 3 #остаток от деления (1 или 2)
+        add = ost * 5 #остаток умножаем на 5
+        tr += troichnoe(add) #дописываем в конец троичную запись add
+
+    return to_dec(tr) #шаг 3: троичная строка → десятичное число
+
+
+# Ввод и вывод
+N = int(input("N = ")) #пользователь вводит число
+print("R =", R(N)) #выводим результат
