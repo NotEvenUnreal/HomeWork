@@ -1001,6 +1001,8 @@ https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_pPA7cWecnsx8iWl3fOWGfLH_sJfVF
 
 
 
+
+
 #Функция перевода числа в троичную систему
 def troichnoe(n):
     res = "" #строка для результата
