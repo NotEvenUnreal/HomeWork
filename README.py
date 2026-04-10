@@ -1042,3 +1042,63 @@ while True:
 # Ввод и вывод
 N = int(input("N = ")) #пользователь вводит число
 print("R =", R(N)) #выводим результат
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+#Данные
+x = np.linspace(-2 * np.pi, 2 * np.pi, 500) #массив x от -2π до 2π, 500 точек
+y_sin = np.sin(x) #синус для каждого x
+y_cos = np.cos(x) #косинус для каждого x
+y_asin = np.arcsin(np.clip(x, -1, 1)) #арксинус (x ограничен [-1,1])
+rect_x = [-1, 1, 1, -1, -1] #координаты x для прямоугольника
+rect_y = [-0.5, -0.5, 0.5, 0.5, -0.5] #координаты y для прямоугольника
+
+#Настройка графика
+plt.figure(figsize=(10, 6)) #размер окна 10x6 дюймов
+ax = plt.gca() #берём текущие оси
+
+#Переносим оси в центр
+ax.spines['left'].set_position('center') #ось y в центр
+ax.spines['bottom'].set_position('center') #ось x в центр
+ax.spines['right'].set_color('none') #скрываем правую ось
+ax.spines['top'].set_color('none') #скрываем верхнюю ось
+
+#Графики
+plt.plot(x, y_sin, label='sin(x)', linewidth=2) #синус сплошной линией
+plt.plot(x, y_cos, label='cos(x)', linewidth=2) #косинус сплошной линией
+plt.plot(np.clip(x, -1, 1), y_asin, label='arcsin(x)', linewidth=2, linestyle='--') #арксинус пунктиром
+plt.plot(rect_x, rect_y, label='Прямоугольник', linewidth=2, color='green') #прямоугольник зелёный
+
+#Оформление
+plt.xlim(-2.5, 2.5) #границы x от -2.5 до 2.5
+plt.ylim(-1.5, 1.5) #границы y от -1.5 до 1.5
+plt.title('Синус, косинус, арксинус и прямоугольник') #заголовок
+plt.legend() #показываем легенду
+plt.grid(True) #включаем сетку
+
+plt.show() #показываем график
