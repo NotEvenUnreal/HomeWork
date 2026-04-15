@@ -1102,3 +1102,71 @@ plt.legend() #показываем легенду
 plt.grid(True) #включаем сетку
 
 plt.show() #показываем график
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+agrad = 30 #угол атаки в градусах
+arad = np.radians(agrad) #перевод угла атаки в радианы
+g = 9.81 #постоянная приятяжения Земли
+v0km = 20 #км/ч
+v0 = v0km * 1000 / 3600 #перевод в м/с
+nachalo = 0
+
+l = (v0**2 * np.sin(2 * arad)) / g #дальность полёта
+t = (2 * v0 * np.sin(arad)) / g #время полёта
+
+x = np.linspace(nachalo, l, 100) #горизонтальные координаты
+y = x * np.tan(arad) - (g * x**2) / (2 * v0**2 * np.cos(arad)**2) #высота в каждой точке x
+
+plt.figure(figsize=(8, 4.5))
+ax = plt.gca()
+
+plt.plot(x, y, label='Полёт камня', linewidth=4)
+
+#автоматические границы по данным
+plt.xlim(0, l + 0.5)
+plt.ylim(0, max(y) + 0.2)
+
+plt.legend()
+plt.grid(True)
+plt.xlabel('x (м)')
+plt.ylabel('y (м)')
+plt.title('Траектория полёта камня')
+
+#     .2f - округление до 2 знаков после запятой
+print(f"Время полёта: {t:.2f} с")
+print(f"Максимальная высота: {max(y):.2f} м")
+print(f"Место Запуска: x = {0} м, y = {0} м")
+print(f"Место Приземления: x = {l:.2f} м, y = {0} м")
+
+plt.show()
