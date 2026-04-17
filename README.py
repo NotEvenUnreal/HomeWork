@@ -1286,3 +1286,75 @@ print('Количество элементов равное 5:', np.count_nonzer
 #         print("!!!КРИТИЧЕСКАЯ СИТАЦИЯ!!!: БАНК ПОД УГРОЗОЙ БАНКРОТСВА!")
 #         break
 # print(total_money)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import matplotlib.pyplot as plt
+count = 1
+for i in range(4):
+    #данные для синусоиды
+    x = np.linspace(0, count * np.pi, 50) #50 точек для периодов от 0.5 до 2
+    y = np.sin(x)
+    plt.bar(x, y, width= count*0.1, color='skyblue', edgecolor='black')
+
+    #настройка поля матплотлиб
+    plt.title('Гистограмма синусоидальной формы')
+    plt.xlabel('x')
+    plt.ylabel('sin(x)')
+    plt.grid(True, alpha=0.3)
+    plt.show()
+    count += 1
+
+
+
+
+import matplotlib.pyplot as plt
+#данные: минуты и объёмы (тысячи акций)
+minutes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+volumes = [128.55, -38.87, 22.99, -38.18, 50.00, -71.53, 29.68, 48.12, -75.17, -290.47]
+
+#зелёный если объём положительный, красный если отрицательный
+colors = ['green' if v > 0 else 'red' for v in volumes]
+
+plt.bar(minutes, volumes, color=colors, edgecolor='black', alpha=0.7)
+
+#настройка поля матплотлиб
+plt.title('NVDA объём торгов')
+plt.xlabel('Минута')
+plt.ylabel('Изменение объёма (k)')
+plt.grid(axis='y', alpha=0.3)
+plt.axhline(y=0, color='black', linewidth=0.8)  # нулевая линия
+plt.show()
