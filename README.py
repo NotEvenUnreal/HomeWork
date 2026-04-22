@@ -1358,3 +1358,36 @@ plt.ylabel('Изменение объёма (k)')
 plt.grid(axis='y', alpha=0.3)
 plt.axhline(y=0, color='black', linewidth=0.8)  # нулевая линия
 plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import matplotlib.pyplot as plt
+
+labels = ['Чувашия', 'Марий Эл', 'Татарстан', 'Нижегородская обл.', 'Ульяновская обл.', 'Мордовия']
+sizes = [11.4, 6.5, 38.6, 29.9, 11.6, 7.5] #проценты
+colors = ['gold', 'lightcoral', 'lightskyblue', 'lightgreen', 'orange', 'pink']
+explode = (0.1, 0, 0, 0, 0, 0) #вырезать Чувашию
+
+plt.pie(sizes, explode=explode, labels=labels, colors=colors,
+        autopct='%1.1f%%', shadow=True, startangle=135)
+plt.title('Население Чувашии и соседних регионов (в процентах)')
+
+plt.show()
+
