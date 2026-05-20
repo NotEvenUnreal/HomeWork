@@ -1508,3 +1508,112 @@ for user in data:
     )
 
 console.print(table3)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+from functools import lru_cache
+
+# Проблема: Функция вызывается много раз с одними и теми же аргументами, но каждый раз заново считает результат
+#
+# Решение: lru_cache запоминает результат и при повторном вызове просто возвращает его мгновенно
+
+@lru_cache
+def square(x):
+    print(f"Считаю {x}...")
+    return x * x
+
+print(square(3))  # Считает 3... → 9
+print(square(3))  # → 9 (не передаёт (x) в square(x), потому что результат уже запомнен)
+
+
+
+
+
+
+from functools import reduce
+
+# Проблема: Нужно применить функцию к парам элементов, накапливая результат (например, перемножить все числа).
+#
+# Решение: reduce делает это в одну строку.
+
+numbers = [2, 3, 4]
+# 2*3=6, 6*4=24
+result = reduce(lambda x, y: x * y, numbers)
+print(f"Перемножение {numbers} = {result}")  # 24
+
+
+
+
+
+
+from functools import partial
+
+# Проблема: У тебя есть функция с 2 параметрами. Ты постоянно передаёшь второй одинаковый
+#
+# Решение: partial «замораживает» часть параметров, создавая новую функцию с меньшим количеством аргументов
+
+def show_city(city, country):
+    print(f"{city} — город в {country}")
+
+# Создаём новую функцию, где country уже = "Россия"
+show_russian_city = partial(show_city, country="Россия")
+
+show_russian_city("Москва")     # Москва — город в Россия
+show_russian_city("Казань")     # Казань — город в Россия
+show_russian_city("Волгоград")  # Волгоград — город в Россия
+
+
+
+
+
+
+
+
+
+
+
+
+
+from functools import singledispatch
+
+# Проблема: Хочется иметь одну функцию, которая по‑разному обрабатывает целые числа, строки, списки, но без кучи if type(x) == ....
+#
+# Решение: singledispatch позволяет перегружать функцию для разных типов.
+
+@singledispatch
+def process(arg):
+    print(f"Базовый тип: {type(arg)}")
+
+@process.register(int)
+def _(arg):
+    print(f"Целое число: {arg}")
+
+@process.register(list)
+def _(arg):
+    print(f"Список длины {len(arg)}")
+
+process(42)        # Целое число: 42
+process([1,2,3])   # Список длины 3
+process("hello")   # Базовый тип: <class 'str'>
