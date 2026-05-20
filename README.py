@@ -1617,3 +1617,114 @@ def _(arg):
 process(42)        # Целое число: 42
 process([1,2,3])   # Список длины 3
 process("hello")   # Базовый тип: <class 'str'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import asyncio
+import websockets
+
+# Множество для хранения всех подключённых клиентов
+connected_clients = set()
+
+async def handler(websocket):
+    # Добавляем нового клиента
+    connected_clients.add(websocket)
+    try:
+        # Ждём сообщения от клиента
+        async for message in websocket:
+            print(f"Получено: {message}")
+            # Отправляем сообщение всем остальным клиентам
+            for client in connected_clients:
+                if client != websocket:
+                    await client.send(message)
+    finally:
+        # Клиент отключился — удаляем его
+        connected_clients.remove(websocket)
+
+async def main():
+    # Запускаем сервер на localhost, порт 9999
+    async with websockets.serve(handler, "localhost", 9999):
+        print("WebSocket сервер запущен на ws://localhost:9999")
+        await asyncio.Future()  # Бесконечно работаем
+
+if __name__ == "__main__":
+    asyncio.run(main())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import asyncio
+import websockets
+import sys
+
+async def receive_messages(websocket):
+    """Принимает сообщения от сервера и выводит их"""
+    try:
+        async for message in websocket:
+            print(f"\n[Сообщение]: {message}")
+            print("Вы: ", end="", flush=True)
+    except websockets.exceptions.ConnectionClosed:
+        print("\nСоединение закрыто")
+
+async def send_messages(websocket):
+    """Читает ввод пользователя и отправляет сообщения"""
+    while True:
+        message = await asyncio.get_event_loop().run_in_executor(None, sys.stdin.readline)
+        if message.strip():
+            await websocket.send(message.strip())
+
+async def main():
+    uri = "ws://localhost:9999"
+    try:
+        async with websockets.connect(uri) as websocket:
+            print("Подключено к чату. Введите сообщение:")
+            # Запускаем приём и отправку параллельно
+            await asyncio.gather(
+                receive_messages(websocket),
+                send_messages(websocket)
+            )
+    except ConnectionRefusedError:
+        print("Сервер не запущен. Запусти сначала server.py")
+
+if __name__ == "__main__":
+    asyncio.run(main())
