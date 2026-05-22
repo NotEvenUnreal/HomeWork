@@ -1728,3 +1728,131 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import random
+import string
+
+
+class PasswordGenerator:
+    """Генератор случайных паролей"""
+
+    def __init__(self, length=8):
+        self.length = length
+        self.history = []
+
+    def generate(self, use_digits=True, use_punctuation=False):
+        chars = string.ascii_letters
+        if use_digits:
+            chars += string.digits
+        if use_punctuation:
+            chars += string.punctuation
+
+        # Генерируем пароль: случайно выбираем символ из набора chars,
+        # повторяем это self.length раз, затем склеиваем все символы в строку
+        password = ''.join(random.choice(chars) for _ in range(self.length))
+        self.history.append(password)
+        return password
+
+    def show_history(self):
+        if not self.history:
+            print("Пароли пока не генерировались")
+            return
+        print(f"История паролей (длина {self.length}):")
+        for i, pwd in enumerate(self.history, 1):
+            print(f"{i}. {pwd}")
+
+
+
+
+# Генератор с паролями по умолчанию (8 символов)
+gen_default = PasswordGenerator()  # length=8 по умолчанию
+
+# Генератор с длинными паролями (32 символа)
+gen_long = PasswordGenerator(length=32)
+
+# Генерируем 2 пароля для каждого
+p1 = gen_default.generate(use_digits=True)               # 8 символов, буквы+цифры
+p2 = gen_default.generate(use_punctuation=True)          # 8 символов, буквы+цифры+символы
+
+p3 = gen_long.generate(use_digits=True)                  # 32 символа, буквы+цифры
+p4 = gen_long.generate(use_punctuation=True)             # 32 символа, буквы+цифры+символы
+
+print("Новые пароли:")
+print(p1)
+print(p2)
+print(p3)
+print(p4)
+
+
+gen_default.show_history()
+
+
+gen_long.show_history()
+
