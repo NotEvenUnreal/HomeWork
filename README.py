@@ -1856,3 +1856,664 @@ gen_default.show_history()
 
 gen_long.show_history()
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# class Magic:
+#     """Класс для демонстрации всех магических методов"""
+#
+#     # ==================== ОСНОВНЫЕ МЕТОДЫ ====================
+#
+#     def __init__(self, name, data=None):
+#         """
+#         __init__ - конструктор
+#         Вызывается при создании объекта: объект = Класс()
+#         """
+#         print("1. __init__: создание объекта")
+#         self.name = name
+#         self.data = data if data is not None else []
+#         self.value = 42
+#         self._private_attr = "скрыто"
+#
+#     def __str__(self):
+#         """
+#         __str__ - строковое представление для пользователей
+#         Вызывается при: print(объект), str(объект)
+#         Должен возвращать строку
+#         """
+#         print("2. __str__: вызван print()")
+#         return f"Magic: {self.name}, данные: {self.data}"
+#
+#     def __repr__(self):
+#         """
+#         __repr__ - строковое представление для разработчиков
+#         Вызывается при: repr(объект), в интерактивной консоли
+#         Должен возвращать строку, по которой можно восстановить объект
+#         """
+#         print("3. __repr__: вызван repr()")
+#         return f"Magic('{self.name}', {self.data})"
+#
+#     def __len__(self):
+#         """
+#         __len__ - длина объекта
+#         Вызывается при: len(объект)
+#         Должен возвращать целое число
+#         """
+#         print("4. __len__: вызван len()")
+#         return len(self.data)
+#
+#     # ==================== ДОСТУП ПО ИНДЕКСУ ====================
+#
+#     def __getitem__(self, key):
+#         """
+#         __getitem__ - доступ по индексу или ключу
+#         Вызывается при: объект[индекс]
+#         """
+#         print(f"5. __getitem__: обращение к индексу {key}")
+#         return self.data[key]
+#
+#     def __setitem__(self, key, value):
+#         """
+#         __setitem__ - установка значения по индексу
+#         Вызывается при: объект[индекс] = значение
+#         """
+#         print(f"6. __setitem__: установка {key} = {value}")
+#         self.data[key] = value
+#
+#     def __delitem__(self, key):
+#         """
+#         __delitem__ - удаление по индексу
+#         Вызывается при: del объект[индекс]
+#         """
+#         print(f"7. __delitem__: удаление индекса {key}")
+#         del self.data[key]
+#
+#     def __contains__(self, item):
+#         """
+#         __contains__ - проверка наличия элемента
+#         Вызывается при: элемент in объект
+#         Должен возвращать True/False
+#         """
+#         print(f"8. __contains__: проверка {item} in объект")
+#         return item in self.data
+#
+#     # ==================== МАТЕМАТИЧЕСКИЕ ОПЕРАЦИИ ====================
+#
+#     def __add__(self, other):
+#         """
+#         __add__ - сложение объектов
+#         Вызывается при: объект1 + объект2
+#         Должен возвращать новый объект
+#         """
+#         print("9. __add__: сложение объектов")
+#         new = Magic(f"{self.name}+{other.name}")
+#         new.data = self.data + other.data
+#         return new
+#
+#     def __sub__(self, other):
+#         """
+#         __sub__ - вычитание объектов
+#         Вызывается при: объект1 - объект2
+#         """
+#         print("10. __sub__: вычитание объектов")
+#         result = []
+#         for x in self.data:
+#             if x not in other.data:
+#                 result.append(x)
+#         new = Magic(f"{self.name}-{other.name}", result)
+#         return new
+#
+#     def __mul__(self, number):
+#         """
+#         __mul__ - умножение объекта на число
+#         Вызывается при: объект * число
+#         """
+#         print(f"11. __mul__: умножение на {number}")
+#         return Magic(f"{self.name}*{number}", self.data * number)
+#
+#     def __truediv__(self, number):
+#         """
+#         __truediv__ - деление объекта на число
+#         Вызывается при: объект / число
+#         """
+#         print(f"12. __truediv__: деление на {number}")
+#         part = len(self.data) // number
+#         return Magic(f"{self.name}/{number}", self.data[:part])
+#
+#     # ==================== ОПЕРАЦИИ СРАВНЕНИЯ ====================
+#
+#     def __eq__(self, other):
+#         """
+#         __eq__ - равенство
+#         Вызывается при: объект1 == объект2
+#         """
+#         print("13. __eq__: сравнение ==")
+#         return self.data == other.data
+#
+#     def __lt__(self, other):
+#         """
+#         __lt__ - меньше
+#         Вызывается при: объект1 < объект2
+#         """
+#         print("14. __lt__: сравнение <")
+#         return len(self.data) < len(other.data)
+#
+#     def __le__(self, other):
+#         """
+#         __le__ - меньше или равно
+#         Вызывается при: объект1 <= объект2
+#         """
+#         print("15. __le__: сравнение <=")
+#         return len(self.data) <= len(other.data)
+#
+#     def __gt__(self, other):
+#         """
+#         __gt__ - больше
+#         Вызывается при: объект1 > объект2
+#         """
+#         print("16. __gt__: сравнение >")
+#         return len(self.data) > len(other.data)
+#
+#     def __ge__(self, other):
+#         """
+#         __ge__ - больше или равно
+#         Вызывается при: объект1 >= объект2
+#         """
+#         print("17. __ge__: сравнение >=")
+#         return len(self.data) >= len(other.data)
+#
+#     # ==================== ВЫЗОВ КАК ФУНКЦИИ ====================
+#
+#     def __call__(self, coefficient=2):
+#         """
+#         __call__ - объект ведёт себя как функция
+#         Вызывается при: объект(аргументы)
+#         """
+#         print(f"18. __call__: объект как функция, коэффициент={coefficient}")
+#         return [x * coefficient for x in self.data]
+#
+#     # ==================== РАБОТА С АТРИБУТАМИ ====================
+#
+#     def __getattr__(self, name):
+#         """
+#         __getattr__ - при обращении к несуществующему атрибуту
+#         Вызывается когда атрибут не найден обычным способом
+#         """
+#         print(f"19. __getattr__: атрибут '{name}' не найден")
+#         return "значение_по_умолчанию"
+#
+#     def __setattr__(self, name, value):
+#         """
+#         __setattr__ - при установке ЛЮБОГО атрибута
+#         Вызывается при: объект.атрибут = значение
+#         """
+#         print(f"20. __setattr__: установка {name} = {value}")
+#         super().__setattr__(name, value)
+#
+#     def __delattr__(self, name):
+#         """
+#         __delattr__ - при удалении атрибута
+#         Вызывается при: del объект.атрибут
+#         """
+#         print(f"21. __delattr__: удаление атрибута {name}")
+#         super().__delattr__(name)
+#
+#     # ==================== ИТЕРАЦИЯ ====================
+#
+#     def __iter__(self):
+#         """
+#         __iter__ - возвращает итератор
+#         Вызывается при: for x in объект
+#         """
+#         print("22. __iter__: начало итерации")
+#         self._index = 0
+#         return self
+#
+#     def __next__(self):
+#         """
+#         __next__ - следующий элемент при итерации
+#         Вызывается на каждом шаге цикла for
+#         Должен выбрасывать StopIteration когда элементы кончились
+#         """
+#         if self._index < len(self.data):
+#             result = self.data[self._index]
+#             self._index += 1
+#             print(f"23. __next__: следующий элемент {result}")
+#             return result
+#         raise StopIteration
+#
+#     # ==================== КОНТЕКСТНЫЙ МЕНЕДЖЕР ====================
+#
+#     def __enter__(self):
+#         """
+#         __enter__ - при входе в контекстный менеджер
+#         Вызывается при: with объект as переменная:
+#         """
+#         print("24. __enter__: вход в контекстный менеджер")
+#         return self
+#
+#     def __exit__(self, exc_type, exc_val, exc_tb):
+#         """
+#         __exit__ - при выходе из контекстного менеджера
+#         Вызывается после блока with (даже если была ошибка)
+#         """
+#         print("25. __exit__: выход из контекстного менеджера")
+#
+#     # ==================== ХЕШИРОВАНИЕ И ЛОГИКА ====================
+#
+#     def __hash__(self):
+#         """
+#         __hash__ - хеш объекта (нужен чтобы использовать объект как ключ словаря)
+#         Вызывается при: dict[объект] или set(объект)
+#         """
+#         print("26. __hash__: вычисление хеша")
+#         return hash(tuple(self.data))
+#
+#     def __bool__(self):
+#         """
+#         __bool__ - проверка объекта в логическом контексте
+#         Вызывается при: if объект, bool(объект)
+#         Должен возвращать True/False
+#         """
+#         print("27. __bool__: проверка в логическом контексте")
+#         return len(self.data) > 0
+#
+#     # ==================== УНАРНЫЕ ОПЕРАЦИИ ====================
+#
+#     def __neg__(self):
+#         """
+#         __neg__ - унарный минус
+#         Вызывается при: -объект
+#         """
+#         print("28. __neg__: унарный минус")
+#         return Magic(f"-{self.name}", [-x for x in self.data if isinstance(x, (int, float))])
+#
+#     def __abs__(self):
+#         """
+#         __abs__ - абсолютное значение
+#         Вызывается при: abs(объект)
+#         """
+#         print("29. __abs__: абсолютное значение")
+#         return Magic(f"abs({self.name})", [abs(x) for x in self.data if isinstance(x, (int, float))])
+#
+#     def __invert__(self):
+#         """
+#         __invert__ - побитовое НЕ (~)
+#         Вызывается при: ~объект
+#         """
+#         print("30. __invert__: побитовое НЕ")
+#         return Magic(f"~{self.name}", [~x for x in self.data if isinstance(x, int)])
+#
+#
+# # ==================== КОМПАКТНАЯ ДЕМОНСТРАЦИЯ ====================
+#
+# if __name__ == "__main__":
+#     # Создание объектов
+#     m1 = Magic("A", [1, 2, 3, 4, 5])
+#     m2 = Magic("B", [3, 4, 5, 6, 7])
+#     m3 = Magic("C", [])
+#
+#     # Группа 1: строки и длина
+#     print(f"\n>>> {m1}")  # __str__
+#     print(f">>> {repr(m1)}")  # __repr__
+#     print(f">>> len = {len(m1)}")  # __len__
+#
+#     # Группа 2: доступ по индексу
+#     print(f">>> m1[2] = {m1[2]}")  # __getitem__
+#     m1[2] = 99  # __setitem__
+#     print(f">>> after set: {m1.data}")
+#     del m1[2]  # __delitem__
+#     print(f">>> after del: {m1.data}")
+#     print(f">>> 4 in m1? {4 in m1}")  # __contains__
+#
+#     # Группа 3: математика
+#     print(f">>> m1 + m2 = {m1 + m2}")  # __add__
+#     print(f">>> m1 - m2 = {m1 - m2}")  # __sub__
+#     print(f">>> m1 * 2 = {m1 * 2}")  # __mul__
+#     print(f">>> m1 / 2 = {m1 / 2}")  # __truediv__
+#
+#     # Группа 4: сравнения
+#     print(f">>> m1 == m2? {m1 == m2}")  # __eq__
+#     print(f">>> m1 < m2? {m1 < m2}")  # __lt__
+#     print(f">>> m1 > m2? {m1 > m2}")  # __gt__
+#
+#     # Группа 5: вызов как функция
+#     print(f">>> m1(3) = {m1(3)}")  # __call__
+#
+#     # Группа 6: атрибуты
+#     print(f">>> missing attr: {m1.xyz}")  # __getattr__
+#     m1.new = "hello"  # __setattr__
+#     del m1.new  # __delattr__
+#
+#     # Группа 7: итерация
+#     print(">>> iteration:", end=" ")
+#     for x in m1:  # __iter__ + __next__
+#         print(x, end=" ")
+#     print()
+#
+#     # Группа 8: контекстный менеджер
+#     with Magic("ctx", [1, 2]) as ctx:  # __enter__ + __exit__
+#         print(f">>> in context: {ctx}")
+#
+#     # Группа 9: хеш и логика
+#     d = {m1: "value"}  # __hash__
+#     print(f">>> dict key: {d[m1]}")
+#     print(f">>> bool(m1): {bool(m1)}")  # __bool__
+#     print(f">>> bool(m3): {bool(m3)}")  # __bool__
+#
+#     # Группа 10: унарные операции
+#     m4 = Magic("nums", [1, -2, 3, -4, 5])
+#     print(f">>> -m4 = {-m4}")  # __neg__
+#     print(f">>> abs(m4) = {abs(m4)}")  # __abs__
+#
+#     m5 = Magic("ints", [1, 2, 3, 4])
+#     print(f">>> ~m5 = {~m5}")  # __invert__
+
+
+
+
+
+
+
+
+
+import numpy as np
+
+# ===== 1-6: СОЗДАНИЕ МАССИВОВ =====
+arr1 = np.array([1, 2, 3])                     # 1. Из списка
+arr2 = np.zeros((2, 3))                        # 2. Нули
+arr3 = np.ones((2, 3))                         # 3. Единицы
+arr4 = np.full((2, 3), 7)                      # 4. Заполнить значением
+arr5 = np.eye(3)                               # 5. Единичная матрица
+arr6 = np.arange(0, 10, 2)                     # 6. Диапазон [0 2 4 6 8] - 5 элементов
+
+# ===== 7-12: ФОРМА И ПРЕОБРАЗОВАНИЯ =====
+arr7 = arr6.reshape(5, 1)                      # 7. Изменить форму (5 строк, 1 столбец) ✅
+arr8 = np.resize(arr6, (3, 2))                 # 8. Изменить размер (3x2=6 элементов, дополняет)
+arr9 = arr5.flatten()                          # 9. В плоский массив (копия)
+arr10 = arr5.ravel()                           # 10. В плоский (view)
+arr11 = arr5.transpose()                       # 11. Транспонирование
+arr12 = np.concatenate([arr6, arr6])           # 12. Объединить массивы
+
+# ===== 13-18: СТАТИСТИКА =====
+data = np.array([1, 2, 3, 4, 5, 6])
+mean = np.mean(data)                           # 13. Среднее
+median = np.median(data)                       # 14. Медиана
+std = np.std(data)                             # 15. Стандартное отклонение
+var = np.var(data)                             # 16. Дисперсия
+min_val = np.min(data)                         # 17. Минимум
+max_val = np.max(data)                         # 18. Максимум
+
+# ===== 19-24: ОПЕРАЦИИ С МАССИВАМИ =====
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+sum_arr = np.add(a, b)                         # 19. Сложение
+prod_arr = np.multiply(a, b)                   # 20. Умножение
+dot_prod = np.dot(a, b)                        # 21. Скалярное произведение
+sqrt_arr = np.sqrt(a)                          # 22. Квадратный корень
+exp_arr = np.exp(a)                            # 23. Экспонента
+log_arr = np.log(a)                            # 24. Натуральный логарифм
+
+# ===== 25-30: ИНДЕКСАЦИЯ, СОРТИРОВКА, УНИКАЛЬНОСТЬ =====
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+idx = np.where(arr > 3)                        # 25. Индексы элементов >3
+sorted_arr = np.sort(arr)                      # 26. Сортировка
+unique_vals = np.unique([1, 2, 2, 3, 3, 3])   # 27. Уникальные значения
+sum_axis = np.sum(arr, axis=0)                 # 28. Сумма по оси (столбцы)
+cumsum_arr = np.cumsum([1, 2, 3])              # 29. Кумулятивная сумма [1,3,6]
+clip_arr = np.clip([1, 5, 10, 15], 3, 12)      # 30. Ограничить значения [3,5,10,12]
+
+# Вывод примеров
+print("=" * 50)
+print("30 МЕТОДОВ NUMPY")
+print("=" * 50)
+
+print("\n[1] np.array() →", arr1)
+print("[2] np.zeros() →", arr2.shape, "\n", arr2)
+print("[3] np.ones() →", arr3.shape, "\n", arr3)
+print("[4] np.full() →", arr4.shape, "\n", arr4)
+print("[5] np.eye() →\n", arr5)
+print("[6] np.arange() →", arr6)
+
+print("\n[7] reshape() →\n", arr7)
+print("[8] resize() →\n", arr8)
+print("[9] flatten() →", arr9)
+print("[10] ravel() →", arr10)
+print("[11] transpose() →\n", arr11)
+print("[12] concatenate() →", arr12)
+
+print("\n[13] np.mean() →", mean)
+print("[14] np.median() →", median)
+print("[15] np.std() →", f"{std:.2f}")
+print("[16] np.var() →", f"{var:.2f}")
+print("[17] np.min() →", min_val)
+print("[18] np.max() →", max_val)
+
+print("\n[19] np.add() →", sum_arr)
+print("[20] np.multiply() →", prod_arr)
+print("[21] np.dot() →", dot_prod)
+print("[22] np.sqrt() →", sqrt_arr)
+print("[23] np.exp() →", exp_arr)
+print("[24] np.log() →", log_arr)
+
+print("\n[25] np.where() →", idx)
+print("[26] np.sort() →\n", sorted_arr)
+print("[27] np.unique() →", unique_vals)
+print("[28] np.sum(axis=0) →", sum_axis)
+print("[29] np.cumsum() →", cumsum_arr)
+print("[30] np.clip() →", clip_arr)
+
+
+
+
+
+
+import pandas as pd
+import numpy as np
+
+# ==================== ПОДГОТОВКА ДАННЫХ ====================
+df = pd.DataFrame({
+    'name': ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve'],
+    'age': [25, 30, 35, 28, 32],
+    'salary': [50000, 60000, 70000, 55000, 65000],
+    'city': ['NY', 'LA', 'NY', 'CHI', 'LA']
+})
+
+s = pd.Series([10, 20, 30, 40, 50], name='numbers')
+
+
+
+
+
+# ==================== 15 МЕТОДОВ DATAFRAME ====================
+print("\n" + "=" * 50)
+print("15 МЕТОДОВ DATAFRAME")
+print("\n" + "=" * 50)
+
+
+# 1. head() - первые N строк
+print("\n[1] df.head(3) → первые 3 строки")
+print(df.head(3))
+
+# 2. info() - информация о DataFrame
+print("\n[2] df.info() → информация о типах и null")
+df.info()
+
+# 3. describe() - статистика по числовым колонкам
+print("\n[3] df.describe() → статистика")
+print(df.describe())
+
+# 4. shape - размерность (строки, колонки)
+print(f"\n[4] df.shape → {df.shape} строк и колонок")
+
+# 5. columns - список колонок
+print(f"\n[5] df.columns → {df.columns.tolist()}")
+
+# 6. dtypes - типы данных
+print("\n[6] df.dtypes → типы колонок")
+print(df.dtypes)
+
+# 7. isna() / isnull() - проверка на пропуски
+print("\n[7] df.isna().sum() → количество пропусков")
+print(df.isna().sum())
+
+# 8. dropna() - удалить пропуски
+print("\n[8] df.dropna() → удалить строки с NaN")
+print(df.dropna())  # здесь нет NaN, просто демонстрация
+
+# 9. fillna() - заполнить пропуски
+df_with_na = df.copy()
+df_with_na.loc[0, 'age'] = np.nan
+print("\n[9] df.fillna(0) → заполнить NaN нулями")
+print(df_with_na.fillna(0))
+
+# 10. groupby() - группировка
+print("\n[10] df.groupby('city')['salary'].mean() → средняя зарплата по городам")
+print(df.groupby('city')['salary'].mean())
+
+# 11. sort_values() - сортировка
+print("\n[11] df.sort_values('age', ascending=False) → сортировка по возрасту (убыв)")
+print(df.sort_values('age', ascending=False))
+
+# 12. merge() - объединение DataFrames
+df2 = pd.DataFrame({'name': ['Alice', 'Bob'], 'bonus': [5000, 3000]})
+print("\n[12] df.merge(df2, on='name') → объединение по колонке name")
+print(df.merge(df2, on='name', how='left'))
+
+# 13. apply() - применить функцию
+print("\n[13] df['salary'].apply(lambda x: x * 1.1) → повышение зарплаты на 10%")
+print(df['salary'].apply(lambda x: x * 1.1))
+
+# 14. loc[] - доступ по меткам
+print("\n[14] df.loc[df['age'] > 30] → строки с возрастом > 30")
+print(df.loc[df['age'] > 30])
+
+# 15. iloc[] - доступ по индексам
+print("\n[15] df.iloc[1:4, 0:2] → строки 1-3, колонки 0-1")
+print(df.iloc[1:4, 0:2])
+
+# ==================== 15 МЕТОДОВ SERIES ====================
+print("\n" + "=" * 50)
+print("15 МЕТОДОВ SERIES")
+print("\n" + "=" * 50)
+
+
+# 1. value_counts() - подсчет уникальных значений
+print("\n[1] s.value_counts() → частота каждого значения")
+print(pd.Series([1, 2, 2, 3, 3, 3]).value_counts())
+
+# 2. sum() - сумма
+print(f"\n[2] s.sum() → {s.sum()}")
+
+# 3. mean() - среднее
+print(f"\n[3] s.mean() → {s.mean()}")
+
+# 4. median() - медиана
+print(f"\n[4] s.median() → {s.median()}")
+
+# 5. min() / max() - минимум/максимум
+print(f"\n[5] s.min() → {s.min()}, s.max() → {s.max()}")
+
+# 6. std() - стандартное отклонение
+print(f"\n[6] s.std() → {s.std():.2f}")
+
+# 7. unique() - уникальные значения
+print(f"\n[7] s.unique() → {s.unique()}")
+
+# 8. nunique() - количество уникальных
+print(f"\n[8] s.nunique() → {s.nunique()}")
+
+# 9. sort_values() - сортировка
+print(f"\n[9] s.sort_values(ascending=False) → {s.sort_values(ascending=False).values}")
+
+# 10. sort_index() - сортировка по индексу
+s2 = pd.Series([100, 200, 300], index=[3, 1, 2])
+print(f"\n[10] s2.sort_index() → {s2.sort_index().values}")
+
+# 11. reset_index() - сброс индекса
+print(f"\n[11] s.reset_index(drop=True) → {s.reset_index(drop=True).values}")
+
+# 12. astype() - смена типа
+s_float = s.astype(float)
+print(f"\n[12] s.astype(float) → {s_float.values}")
+
+# 13. isin() - проверка вхождения
+print(f"\n[13] s.isin([20, 40]) → {s.isin([20, 40]).values}")
+
+# 14. cumsum() - кумулятивная сумма
+print(f"\n[14] s.cumsum() → {s.cumsum().values}")
+
+# 15. apply() - применить функцию
+print(f"\n[15] s.apply(lambda x: x ** 2) → {s.apply(lambda x: x**2).values}")
