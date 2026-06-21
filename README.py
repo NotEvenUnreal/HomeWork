@@ -2899,3 +2899,26 @@ print(min([f(N) for N in range(1, 10000) if f(N) > 114]))
 #     if f(N) == 1864246:
 #         print(N)
 #         break
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def f(N):
+    n = bin(N)[2:]
+    n = n + n[-2]
+    n = n + n[-2]
+    return int(n, 2)
+print(min([N for N in range (2, 10000) if f(N) > 150]))
