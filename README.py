@@ -2517,3 +2517,385 @@ print(f"\n[14] s.cumsum() → {s.cumsum().values}")
 
 # 15. apply() - применить функцию
 print(f"\n[15] s.apply(lambda x: x ** 2) → {s.apply(lambda x: x**2).values}")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# def to_decimal(s, b):
+#     d = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+#     s = str(s).upper()
+#     r = 0
+#     for i, digit in enumerate(reversed(s)):
+#         r += d.index(digit) * (b ** i)
+#     return r
+#
+# def from_decimal(n, b):
+#     d = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+#     r = ""
+#     while n > 0:
+#         r = d[n % b] + r
+#         n //= b
+#     return r or "0"
+#
+# # Проверка to_decimal (из любой в десятичную)
+# print(to_decimal("1010", 2))   # 10
+# print(to_decimal("12", 3))     # 5
+# print(to_decimal("FF", 16))    # 255
+# print(to_decimal("377", 8))    # 255
+#
+# # Проверка from_decimal (из десятичной в любую)
+# print(from_decimal(10, 2))     # 1010
+# print(from_decimal(5, 3))      # 12
+# print(from_decimal(255, 16))   # FF
+# print(from_decimal(255, 8))    # 377
+
+
+
+
+# for n in range(1, 1000):
+#     print(bin(n)[::2])
+#     first_index = 1
+
+
+# for n in range(1, 1000):
+#     n2 = bin(n)[2:]
+#     n2 = n2.replace("1", "", 1)
+#     print(n2)
+
+
+
+
+
+# def to_base(n, base):
+#     digits = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+#     if n == 0:
+#         return '0'
+#     res = ''
+#     while n > 0:
+#         res = digits[n % base] + res
+#         n //= base
+#     return res
+#
+#
+# for n in range(1, 100):
+#     s = to_base(n, 3)  # Перевод в какую-то
+#     print(s)
+#
+#     # Если нужно обратно
+#     r = int(s, 3)  # Из какой-то в десятичную
+#     print(r)
+
+
+
+
+
+
+
+
+# def to_base(n, base):
+#     digits = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+#     if n == 0:
+#         return '0'
+#     res = ''
+#     while n > 0:
+#         res = digits[n % base] + res
+#         n //= base
+#     return res
+#
+# max_r = 0
+# for n in range(1, 13):
+#     s = to_base(n, 2)
+#     if n % 2 == 0:
+#         s = "10" + s
+#     elif n % 2 == 1:
+#         s = "1" + s + "00"
+#     print(s)
+#
+#     # Если нужно обратно
+#     r = int(s, 2)
+#     print(r)
+#     max_r = max(max_r, r)
+# print(max_r)
+
+
+
+
+
+
+
+# def to_base(n, base):
+#     digits = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+#     if n == 0:
+#         return '0'
+#     res = ''
+#     while n > 0:
+#         res = digits[n % base] + res
+#         n //= base
+#     return res
+#
+# max_r = 0
+# for n in range(234567890, 567891235):
+#     s = to_base(n, 2)  # Перевод в какую-то
+#     if n % 2 == 0:
+#         s = "11" + s
+#     elif n % 2 == 1:
+#         s = "1" + s + "10"
+#     print(s)
+#
+#     # Если нужно обратно
+#     r = int(s, 2)  # Из какой-то в десятичную
+#     print(r)
+#     max_r = max(max_r, r)
+# print(max_r)
+
+
+
+
+# def to_base(n, base):
+#     digits = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+#     if n == 0:
+#         return '0'
+#     res = ''
+#     while n > 0:
+#         res = digits[n % base] + res
+#         n //= base
+#     return res
+#
+# res = []
+# for n in range(1, 100):
+#     s = to_base(n, 3)  # Перевод в какую-то
+#     sum_s = 0
+#     for d in s:
+#         sum_s += int(d)
+#     if sum_s % 3 == 0:
+#         s =  "112" + s[2:]
+#     elif sum_s % 3 != 0:
+#         ss = to_base(sum_s, 3)
+#         s = s + ss
+#
+#
+#     # Если нужно обратно
+#     r = int(s, 3)  # Из какой-то в десятичную
+#     if r % 2 == 0 and r > 702:
+#         res.append(r)
+# print(min(res))
+
+
+
+
+
+
+
+
+# def to_base(n, base):
+#     digits = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+#     if n == 0:
+#         return '0'
+#     res = ''
+#     while n > 0:
+#         res = digits[n % base] + res
+#         n //= base
+#     return res
+#
+#
+# for n in range(1, 100):
+#     s = to_base(n, 2)  # Перевод в какую-то
+#     z = s.count("0")
+#     o = s.count("1")
+#     if z > o:
+#         pos = s.find("0")
+#         s_new = s[:pos] + "1" + s[pos+1:]
+#     else:
+#         pos = s.rfind("1")
+#         s_new = s[:pos] + "0" + s[pos+1:]
+#     print(s)
+#
+#     # Если нужно обратно
+#     r = int(s, 2)  # Из какой-то в десятичную
+#     print(r)
+
+
+
+# def f(N):
+#     n = bin(N)[2:]
+#     if N % 3 == 0: n += n[-3:]
+#     else: n += bin((N % 3) * 3)[2:]
+#     return int(n, 2)
+#
+# print(min(f(N) for N in range(1, 10000) if f(N) > 151))
+
+
+
+
+# def f(N):
+#     n = bin(N)[2:]
+#     if N % 2 == 0: #if n[-1] == '0':
+#         n = bin(n.count("1"))[2:] + n + str(n.count("1") % 2)
+#     else:
+#         n = n + "0" + bin(bin(N)[2:].count("1"))[2:]
+#     return int(n, 2)
+# q = (max([f(N) for N in range (1, 10000) if f(N) < 256]))
+# print(q)
+# print(min([N for N in range (1, 10000) if f(N) == q]))
+
+# def f(N):
+#     n = bin(N)[2:]
+#     if N % 2 == 0:
+#         n = n + "0"
+#     else:
+#         n = n + "1"
+#     if n.count("1") % 2 != 0:
+#         n = n + "1"
+#     else:
+#         n = n + "0"
+#     return int(n, 2)
+# print(min([f(N) for N in range (1, 10000) if f(N) > 2023]))
+
+
+# def f(N):
+#     n = bin(N)[2:]
+#     if n.count("1") % 2 == 0:
+#         n = n + "0"
+#         n = "10" + n[2:]
+#     elif n.count("1") % 2 == 1:
+#         n = n + "1"
+#         n = "10" + n[2:]
+#     return int(n, 2)
+# print(max([N for N in range(1, 10000) if f(N) < 35]))
+
+
+
+
+# def f(N):
+#     n = bin(N)[2:]
+#     if n[-1] == "0":
+#         n = "10" + n
+#     elif n[-1] != "0":
+#         n = "1" + n + "01"
+#     return int(n, 2)
+# print(max([f(N) for N in range(1, 10000) if N <= 12]))
+
+
+
+# def f(N):
+#     n = bin(N)[2:]
+#     if N % 3 == 0:
+#         n =  n + n[-3:]
+#     elif N % 3 != 0:
+#         n = n + bin((N % 3) * 3)[2:]
+#     return int(n, 2)
+# print(min([N for N in range(1, 10000) if f(N) > 76]))
+
+
+# def f(N):
+#     n = bin(N)[2:].zfill(8)
+#     new_n = "".join("1" if d == "0" else "0" for d in n)
+#     M = int(new_n, 2)
+#     return M - N
+# print(min(N for N in range(0, 256) if f(N) == 133))
+
+
+def f(N):
+    n = bin(N)[2:]
+    sum_n = n.count("1")
+    if sum_n % 2 != 0:
+        n = n + "11"
+    elif sum_n % 2 == 0:
+        n = n + "00"
+    return int(n, 2)
+print(min([f(N) for N in range(1, 10000) if f(N) > 114]))
+
+
+
+# N = 15  #ПРИМЕР ПЕРЕВОДА В КАСТОМНЫЕ СИСТЕМЫ
+# n = ""
+# while N > 0:
+#     n = str(N % 3) + n
+#     N //= 3
+# print(n)
+
+
+
+
+# def base(N):
+#     n = ""
+#     while N > 0:
+#         n = str(N % 3) + n
+#         N //= 3
+#     return n
+#
+# def f(N):
+#     n = base(N)
+#     if N % 3 == 0:
+#         n = n + n[-2:]
+#     else:
+#         n =  n + base((N % 3) * 5)
+#     return int(n, 3)
+# print(min(f(N) for N in range(1, 10000) if f(N) > 133))
+
+
+
+# def base(N):
+#     n = ""
+#     while N > 0:
+#         n = str(N % 3) + n
+#         N //= 3
+#     return n
+#
+# def f(N):
+#     n = base(N)
+#     new_n = "".join("2" if d == "0" else "0" if d == "2" else "1" for d in n)
+#     M = int(new_n, 3)
+#     return abs(N - M)
+#
+# for N in range(1, 100000000):
+#     if f(N) == 1864246:
+#         print(N)
+#         break
